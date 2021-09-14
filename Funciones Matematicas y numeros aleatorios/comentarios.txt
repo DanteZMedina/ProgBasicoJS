@@ -1,0 +1,235 @@
+/*var z;
+
+for (var i = 0; i < 10; i++)
+{
+    z = aleatorio(0, 1);
+    document.write(z + ", ");
+}
+*/
+
+var vp = document.getElementById("villa");
+var papel = vp.getContext("2d");
+
+var fondo = {
+    url: "tile.png",
+    cargaOK: false
+};
+
+var vaca = {
+    url: "vaca.png",
+    cargaOK: false 
+};
+
+
+var cantidad = aleatorio(5, 25);
+
+fondo.imagen = new Image();
+fondo.imagen.src = fondo.url
+fondo.imagen.addEventListener("load", cargarFondo);
+
+vaca.imagen = new Image();
+vaca.imagen.src = vaca.url;
+vaca.imagen.addEventListener("load", cargarVaca);
+/*
+var cerdo = new Image();
+cerdo.src = "cerdo.webp";
+cerdo.addEventListener("load", cargarCerdo);
+
+var pollo = new Image();
+pollo.src = "pollo.png";
+pollo.addEventListener("load", cargarPollo);
+*/
+function cargarFondo()
+{
+    fondo.cargaOK = true;
+    dibujar();
+}
+
+function cargarVaca()
+{
+    vaca.cargaOK = true;
+    dibujar();
+}
+
+
+function dibujar()
+    {
+        if (fondo.cargaOK)
+        {
+            papel.drawImage(fondo.imagen, 0, 0);
+        }
+        if (vaca.cargaOK)
+        {
+            console.log(cantidad);
+            for(var v=0; v<cantidad; v++)
+            {
+            var x = aleatorio(0, 6);
+            var y = aleatorio(0, 6);
+            var x = x * 60;
+            var y = y * 60;
+            papel.drawImage(vaca.imagen, x, y);
+            }
+        }
+    }
+
+/*
+function dibujarVaca()
+    {
+        papel.drawImage(vaca, 10, 10);
+    }
+
+function dibujarCerdo()
+    {
+        papel.drawImage(cerdo, 10, 300);
+    }
+
+function dibujarPollo()
+    {
+        papel.drawImage(pollo, 300, 150);
+    }
+
+*/
+function aleatorio(min, max)
+    {
+        var resultado;
+        resultado = Math.floor(Math.random() * (max - min + 1)) + min;
+        return resultado;
+    }
+
+
+///////////////////////////////////////////////////////
+codigo bueno 
+
+var vp = document.getElementById("villa");
+var papel = vp.getContext("2d");
+
+//Variable global para la cantidad de animales
+var cantidadVacas = aleatorio(1, 5);
+var cantidadCerdos = aleatorio(1, 8);
+var cantidadpollos = aleatorio(1, 15);
+
+//Creando iniciadores de los objetos, fondo y animales.
+//Esto es un iniciador de objeto: fondo
+var fondo = {
+    url: "tile.png",
+    cargaOK: false
+};
+//Esto es un iniciador de objeto: vaca
+var vaca = {
+    url: "vaca.png",
+    cargaOK: false 
+};
+//Esto es un iniciador de objeto: cerdo
+var cerdo = {
+    url: "cerdo.png",
+    cargaOK: false
+};
+//Esto es un iniciador de objeto: pollo
+var pollo = {
+    url: "pollo.png",
+    cargaOK: false
+};
+
+
+//Aqui se esta creando un objeto y cargandolo del archivo png: fondo
+fondo.imagen = new Image();
+fondo.imagen.src = fondo.url
+fondo.imagen.addEventListener("load", cargarFondo);
+
+//Se esta craendo un objeto y cargando del archivo png: vaca
+vaca.imagen = new Image();
+vaca.imagen.src = vaca.url;
+vaca.imagen.addEventListener("load", cargarVaca);
+
+//Vamos a crear el objeto del cerdo y cargarlo del archivo png: cerdo
+cerdo.imagen = new Image();
+cerdo.imagen.src = cerdo.url;
+cerdo.imagen.addEventListener("load", cargarCerdo);
+
+//Ahora vamos a crear el objeto pollo y cargarlo del archivo png en la 3ra linea: pollo
+pollo.imagen = new Image();
+pollo.imagen.src = pollo.url;
+pollo.imagen.addEventListener("load", cargarPollo);
+
+//Con esta funcion nos aseguramos que ya ha cargado nuestro fondo y esta listo para mostrarse.
+function cargarFondo()
+{
+    fondo.cargaOK = true;
+    dibujar();
+}
+//Con esta funcion nos aseguramos que ya se ha cargado nuestra vaca y esta lista para mostrarse.
+function cargarVaca()
+{
+    vaca.cargaOK = true;
+    dibujar();
+}
+//Vamos a crear la funcion para el cerdo en el que aseguremos que ya se ha cargado y esta listo para usarse.
+function cargarCerdo()
+{
+    cerdo.cargaOK = true;
+    dibujar();
+}
+//Y finalmente crearemos la funcion del pollo para cuando este cargado y listo para mostrar.
+function cargarPollo()
+{
+    pollo.cargaOK = true;
+    dibujar();
+}
+
+
+function dibujar()
+    {
+        //Unicamente si el fondo esta cargado, se procedera a dibujar.
+        if (fondo.cargaOK)
+        {
+            papel.drawImage(fondo.imagen, 0, 0);
+        }
+        //Hasta que vaca este cargada, se procedera a dibujar / mostrar.
+        if (vaca.cargaOK)
+        {
+            console.log(cantidadVacas);
+            for(var v=0; v < cantidadVacas; v++)
+            {
+            var x = aleatorio (0, 6);
+            var y = aleatorio (0, 6);
+            var x = x * 60;
+            var y = y * 60;
+            papel.drawImage(vaca.imagen, x, y);
+            }
+        }
+        //Vamos a crear la condicion para cuando el cerdo este cargado, se pueda dibujar / mostrar.
+        if (cerdo.cargaOK)
+        {
+
+            for (var c = 0; c < cantidadCerdos; c++)
+            {
+                var x = aleatorio (0, 7);
+                var y = aleatorio (0, 7);
+                var x = x * 40;
+                var y = y * 40;
+                papel.drawImage(cerdo.imagen, x, y);
+            }
+        }
+        //Finalmente para concluir el primer reto, agregaremos la condicion para cuando el pollo este cargado, se dibuje / muestre.
+        if (pollo.cargaOK)
+        {
+            for( var p = 0; p < cantidadpollos; p++)
+            {
+                var x = aleatorio (1, 8);
+                var y = aleatorio (1, 9);
+                var x = x * 45;
+                var y = y * 45;
+                papel.drawImage(pollo.imagen, x, y);
+            }
+        }
+
+    }
+
+
+//Funcion para generar los numeros aleatorios para nuestros animales 
+function aleatorio(min, max)
+    {
+        var resultado;
+        resultado = Math.floor(Math.random() * (max - min + 1)) + min;
+        return resultado;
+    }
